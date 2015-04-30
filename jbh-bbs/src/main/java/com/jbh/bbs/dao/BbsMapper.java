@@ -2,6 +2,7 @@ package com.jbh.bbs.dao;
 
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 //myBatis 맵퍼 인터페이스

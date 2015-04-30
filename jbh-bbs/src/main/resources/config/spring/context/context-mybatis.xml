@@ -10,10 +10,10 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        
+        <!-- mapperLocations노드에서 스캔하려는 맵퍼의 경로를 설정하면 경로와 일치하는 맵퍼를 모두 호출 -->
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:config/spring/context/mybatis-config-base.xml" />
-        <!-- configLocation을 통해 mybatis-config-base.xml을 넘김 -->
+        
         <!-- mapperLocations노드에서 스캔하려는 맵퍼의 경로를 설정하면 경로와 일치하는 맵퍼를 모두 호출 -->
         <property name="mapperLocations">
             <list>

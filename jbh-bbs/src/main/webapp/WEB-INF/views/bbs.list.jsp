@@ -24,7 +24,7 @@
     </thead>
 
     <tbody>
-    <c:forEach var="item" items="${list}" varStatus="status"> 
+    <c:forEach var="item" items="${list}" varStatus="status">
     <tr>
         <td>${item.idx}</td>
         <td><a href="./${item.idx}">${item.subject}</a></td>

@@ -28,7 +28,6 @@
 	</context:component-scan>
 	<!-- 컨트롤러 스캔 -->
 	
-	<!-- xml 뷰 출력을 위한 빈 추가 -->
 	<!-- XStream -->
     <beans:bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
          <beans:property name="autodetectAnnotations" value="true" />

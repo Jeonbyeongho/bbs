@@ -39,6 +39,7 @@ import com.jbh.bbs.dao.*;
 import com.thoughtworks.xstream.XStream;
 
 //@RequestParam 요청된 파라미터에 값을 찾아 변수에 담는 역할
+//RedirectAttributes 작업을 처리 후 리다이렉트 된 화면에 변수 값을 넘겨주는 역할
 @Controller(value = "viewController")
 public class ViewController {
     private static final Logger logger = LoggerFactory.getLogger(ViewController.class);
@@ -68,9 +69,10 @@ public class ViewController {
         model.addAttribute("mapSearch", mapSearch);
 
         List<BbsVo> list = this.bbsDao.getSelect(mapSearch);
-        //List<BbsVo> list = this.bbsDao.getSelect();
         
+        //List<BbsVo> list = this.bbsDao.getSelect();
         model.addAttribute("list", list);
+
         logger.info("totcal count" + list.size() );
 
         return "bbs.list";

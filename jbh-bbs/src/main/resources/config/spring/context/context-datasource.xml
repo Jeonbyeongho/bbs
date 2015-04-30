@@ -20,7 +20,6 @@
 <property name="location" value="classpath:jdbc.properties" />
 </bean>
 
-<!-- org.apache.commons.dbcp.BasicDataSource를 이용하여 마리아db와 연결진행. jdbcProp에서 읽어온 변수 ${}형식으로 사용.  -->
 <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 <property name="driverClassName" value="${jdbc.driver}" />
 <property name="url" value="${jdbc.url}" />

@@ -2,6 +2,7 @@ package com.jbh.bbs.dao;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 //VO(ValueObject) db데이터 조회후 결과를 담는 객체
@@ -17,7 +18,6 @@ public class BbsVo {
 
     @NotEmpty
     private String content;
-    
     private String reg_datetime;
     
     private Integer read_count;
