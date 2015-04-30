@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd
+     ">
+
+    <!-- component-scan을 추가하고 컨트롤러 어노테이션을 스캔에서 제외시킴. 유즈디폴트필터=false는 어노테이션 자동탐지를 못하게 하는것. -->
+    <!-- Controller 계층만 ServletContext에서 스캔되도록 하기위해 아래와 같이 지정한것 -->
+	<context:component-scan base-package="com.jbh..." use-default-filters="false">
+	<context:include-filter expression="org.springframework.stereotype.Service" type="annotation" />
+	<context:include-filter expression="org.springframework.stereotype.Repository" type="annotation" />
+	</context:component-scan>
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 설정파일들을 임포트 -->
+	<import resource="classpath:config/spring/context/context-datasource.xml"/>
+	<import resource="classpath:config/spring/context/context-mybatis.xml" />
+</beans>

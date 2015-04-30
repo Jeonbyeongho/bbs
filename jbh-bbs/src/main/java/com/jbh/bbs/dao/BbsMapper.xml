@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- myBatis에서 CRUD를 작업 할 맵퍼 생성 -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jbh.bbs.dao.BbsMapper">
+
+    <!-- mybatis의 resultMap을 이용 ,BbsVo를 bbsMap으로 id지정. -->
+    <!-- <result>의 속성들을 포함하여, result 반환 객체를 매핑하고 생성한다. -->
+    <resultMap id="bbsMap" type="com.jbh.bbs.dao.BbsVo">
+        <id     property="idx"    column="idx" />
+        <result property="user_name" column="user_name" />
+        <result property="subject"       column="subject" />
+        <result property="content"       column="content" />
+        <result property="reg_datetime"       column="reg_datetime" />
+        <result property="read_count"       column="read_count" />
+    </resultMap>
+
+		<select id="select" parameterType="hashmap" resultMap="bbsMap">
+		    SELECT  * FROM bbs
+		    <where>
+		          <choose>            <!-- choose문을 사용한 동적 쿼리문 -->
+		          <when test="sch_type == 'subject'">
+		          AND subject like CONCAT('%', #{sch_value} , '%')
+		          </when>
+		          <when test="sch_type == 'content'">
+		          AND content like CONCAT('%', #{sch_value} , '%')
+		          </when>
+		          <when test="sch_type == 'user_name'">
+		          AND user_name like CONCAT('%', #{sch_value} , '%')
+		          </when>
+		          </choose>
+		
+		    </where>
+		</select>
+    <select id="selectOne" resultMap="bbsMap">
+        SELECT  * FROM bbs WHERE idx = #{idx}
+    </select>
+
+    <insert id="insert">
+         INSERT INTO bbs ( user_name, subject, content, reg_datetime ) VALUES (
+                #{user_name}
+              , #{subject}
+              , #{content}
+              , #{reg_datetime}
+         )
+    </insert>
+
+    <update id="update">
+         UPDATE bbs SET
+              user_name = #{user_name},
+              subject = #{subject},
+              content = #{content},
+              reg_datetime = #{reg_datetime}
+         WHERE idx = #{idx} LIMIT 1
+    </update>
+
+    <delete id="delete">
+         DELETE FROM bbs WHERE idx = #{idx}
+    </delete>
+
+		<update id="updateReadCount">
+		UPDATE bbs SET read_count = IFNULL(read_count,0) + 1 WHERE idx = #{idx} LIMIT 1
+		</update>
+
+</mapper>
